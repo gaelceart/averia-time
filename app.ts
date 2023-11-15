@@ -23,7 +23,7 @@ async function joinRows(card_list){
     let content = ``;
     card_list.forEach(card => {
         const exists = containsName(card.name);
-        exists? console.log("EXISTE") : content += createRow(card.name, card.asignee, card.date, card.time)
+        exists? "" : content += createRow(card.name, card.asignee, card.date, card.time)
     });
     return content;
 }
