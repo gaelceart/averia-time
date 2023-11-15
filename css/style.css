@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'Lexend';
+    src: url('../assets/font/Lexend-VariableFont_wght.ttf') format('ttf');
+}
+
+* {
+    margin: 0;
+    font-family: 'Lexend';
+    font-size: 12px;
+}
+
+:root {
+    --color-light:#FEEAF4;
+    --color-dark:#E18CB7;
+    --color-darker:#BE4685;
+}
+
+html {
+    background-color: var(--color-light);
+    background-image: url('../assets/img/averia.gif');
+    background-size: 128px;
+}
+
+header {
+    display: flex;
+    background-color: var(--color-darker);
+    padding: 8px;
+}
+
+h1 {
+    font-size: 250%;
+    display: inline;
+    color: white;
+    padding-left: 8px;
+}
+
+main {
+    padding: 0 5%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+}
+
+thead th{
+    background-color: var(--color-dark);
+    color: white;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    background-color: #FEEAF4CA;
+}
+
+footer{
+    margin-top: 16px;
+    margin-bottom: 6px;
+    text-align: center;
+}
