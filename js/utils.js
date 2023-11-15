@@ -1,4 +1,4 @@
-function msHoraMinuto(milisegundos) {
+export function msHoraMinuto(milisegundos) {
     const ms_hora = 3600000;// 1 hora = 3,600,000 milisegundos
     const ms_minuto = 60000; // 1 minuto = 60,000 milisegundos
     const horas = Math.floor(milisegundos / ms_hora);

@@ -1,8 +1,10 @@
+import {msHoraMinuto} from "./utils"
 
-async function card_action(id) {
+export async function card_action(id) {
     let card_actions;
-    const response = await fetch(`https://api.trello.com/1/cards/${id}/actions?key=${api_key}&token=${token}`);
+    const response = await fetch(`https://api.trello.com/1/cards/${id}/actions?key=${process.env.API_KEY}&token=${process.env.API_TOKEN}`);
     card_actions = await response.json();
+
     let updates = []
 
     card_actions.forEach(action => {
