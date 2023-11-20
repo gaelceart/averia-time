@@ -32,3 +32,18 @@ export function containsName(name) {
     };
     return false;
 };
+
+export async function joinRows(card_list){
+    let content = ``;
+    card_list.forEach(card => {
+        const exists = containsName(card.name);
+        exists? "" : content += createRow(card.name, card.asignee, card.date, card.time)
+    });
+    return content;
+}
+
+export function createOption(name, value){
+    return `
+    <option value='${value}'> ${name}</option>
+    `;
+}
