@@ -1,29 +1,33 @@
 import express from 'express';
-import { done_req } from './js/list';
-import {readIndex, createRow, containsName} from './utils'
+import * as list from './js/list';
+import * as utils from './utils'
+import * as render from './render';
 const PORT: number = +(process.env.PORT || 8081);
 
 const app = express();
-const dom = readIndex();
+const dom = utils.readIndex();
 export const document = dom.window.document;
-const tbody = document.querySelector("tbody");
+
 app.use(express.static("./"));
 
 app.get("/", async(req,res) => {
-    const card_list = await done_req();
-    tbody.insertAdjacentHTML('beforeend', await joinRows(card_list));
-    res.send(dom.serialize())
+    const lists_id = await list.getLists(process.env.BOARD);
+    const keys = Object.keys(lists_id);
+    render.listsName(keys);
+    res.send(dom.serialize());
 });
+
+app.get("/list/:id", async (req,res) => {
+    console.log(req.params.id);
+    const card_list = await list.getCards(req.params.id);
+    render.cards(card_list);
+    res.send(dom.serialize());
+;})
+
+app.get("*", async (req,res) => {
+    res.status(404).send(`Página ${req.url} no encontrada`);
+;})
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}...`);
 });
-
-async function joinRows(card_list){
-    let content = ``;
-    card_list.forEach(card => {
-        const exists = containsName(card.name);
-        exists? "" : content += createRow(card.name, card.asignee, card.date, card.time)
-    });
-    return content;
-}
